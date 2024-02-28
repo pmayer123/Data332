@@ -42,4 +42,38 @@ df$total_cost_per_mile <- (df$Odometer.Ending - df$Odometer.Beginning) / df$tota
 
 df <- subset(df, select = -c(total_cost_per_mile))
 
-df[c('warehouse', 'city_state')] <- str_split_fixed(df$Starting.Location, ",", 2)
+df[c('warehouse', 'starting_city_state')] <- str_split_fixed(df$Starting.Location, ",", 2)
+
+df$starting_city_state <- gsub(',',"",df$starting_city_state)
+# df[c('col1', 'col2')] <- str_split_fixed(df$starting_city_state, " ", 2)
+df_starting_pivot <- df%>%
+  group_by(starting_city_state) %>%
+  summarize(count = n(), 
+            mean_size_hours = mean(Hours, na.rm = TRUE),
+            sd_hours= sd(Hours, na.rm = TRUE),
+            total_hours = sum(Hours, na.rm = TRUE),
+            total_gallons = sum(Gallons, na.rm = TRUE)
+  )
+    
+ggplot(df_starting_pivot, aes(x = starting_city_state, y = count)) + 
+  geom_col() +
+  theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
+
+df[c('ending_warehouse', 'ending_city_state')] <- str_split_fixed(df$Delivery.Location, ",", 2)
+df$ending_city_state <- gsub(',',"",df$ending_city_state)
+
+df$ending_city_state <- str_trim(df$ending_city_state, side = c('left'))
+
+df_ending_pivot <- df%>%
+  group_by(ending_city_state)%>%
+  summarize(count = n(),
+            mean_size_hours = mean(Hours, na.rm = TRUE),
+            sd_hours = sd(Hours, na.rm = TRUE),
+            total_hours = sum(Hours, na.rm = TRUE),
+            total_gallons = sum(Gallons, na.rm = TRUE)
+  )
+
+ggplot(df_ending_pivot, aes(x = ending_city_state, y = count)) +
+  geom_col() +
+  theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
+  
