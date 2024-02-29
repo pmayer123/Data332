@@ -7,7 +7,7 @@ library(stringr)
 
 rm(list = ls())
 # setting up working directory
-setwd("~/Data332/in class trucker")
+setwd("~/Data332/in class trucker/Data")
 
 df_truck <- read_excel('NP_EX_1-2.xlsx', sheet = 2, skip = 3, .name_repair = 'universal')
 #selecting columns
@@ -76,4 +76,6 @@ df_ending_pivot <- df%>%
 ggplot(df_ending_pivot, aes(x = ending_city_state, y = count)) +
   geom_col() +
   theme(axis.text = element_text(angle = 45, vjust = .5, hjust = 1))
-  
+
+#Part 2
+
