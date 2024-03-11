@@ -15,7 +15,7 @@
 ### Reason for visit based on city/state and zip
 
 <p> Shows the reason for visit segmented by the city </p>
-<img src="Patient Billing/Charts/Reasons City-State.png" height = 250, width = 400>
+<img src="Charts/Reasons City-State.png" height = 250, width = 400>
 <p> Shows the reason for visit segmented by the zip </p>
 <img src="Charts/Reasons Zip.png" height = 250, width = 400>
 
