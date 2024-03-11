@@ -70,7 +70,7 @@ df_reasons_invoice <- df_all %>%
   summarize(count = n(), 
             total_invoice = sum(InvoiceAmt, na.rm = TRUE), .groups = "drop")
 
-ggplot(df_reasons_invoice, aes(x = Reason, y = count, fill = InvoicePaid))+
+ggplot(df_reasons_invoice, aes(x = Reason, y = total_invoice, fill = InvoicePaid))+
   geom_bar(stat = "identity", position = "stack") +
   labs(x = "Reason", y = "Invoice Due", fill = "Invoice Paid") +
   scale_fill_manual(values = c("blue", "red"), labels = c("TRUE", "FALSE")) +
