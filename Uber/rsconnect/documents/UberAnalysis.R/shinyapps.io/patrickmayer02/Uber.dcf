@@ -1,0 +1,12 @@
+name: Uber
+title:
+username: patrickmayer02
+account: patrickmayer02
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11939744
+bundleId: 8579509
+url: https://patrickmayer02.shinyapps.io/Uber/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
